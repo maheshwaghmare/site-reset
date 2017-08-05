@@ -40,7 +40,7 @@
 									?>
 									<p>
 										<label <?php echo esc_attr( $theme_key ); ?>>
-											<input type="radio" <?php checked( $reset_data['theme'], $theme_key, ' checked="checked"' ); ?> name="switch-theme" value="<?php echo esc_attr( $theme_key ); ?>" /><?php echo esc_html( $theme_key ); ?>
+											<input type="radio" <?php checked( $reset_data['theme'], $theme_key, ' checked="checked"' ); ?> name="switch-theme" value="<?php echo esc_attr( $theme_key ); ?>" /><?php echo esc_html( $theme_info->Name ); ?>
 										</label>
 									<p>
 								<?php } ?>
