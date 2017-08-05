@@ -28,6 +28,9 @@
 
 				<div id="postbox-container-1" class="postbox-container">
 					<div class="meta-box-sortables">
+
+						<?php do_action( 'site_reset_admin_page_left_section_top' ); ?>
+
 						<div class="postbox">
 							<h2 class="hndle"><span> <?php _e( 'Themes', 'site-reset' ); ?> </span></h2>
 							<div class="inside">
@@ -46,11 +49,17 @@
 								<?php } ?>
 							</div>
 						</div>
+						
+						<?php do_action( 'site_reset_admin_page_left_section_bottom' ); ?>
+
 					</div>
 				</div>
 
 				<div id="postbox-container-2" class="postbox-container">
 					<div class="meta-box-sortables">
+
+						<?php do_action( 'site_reset_admin_page_right_section_top' ); ?>
+
 						<div class="postbox">
 							<h2 class="hndle"><span> <?php _e( 'Plugins', 'site-reset' ); ?> </span></h2>
 							<div class="inside">
@@ -83,6 +92,9 @@
 								<?php } ?>
 							</div>
 						</div>
+
+						<?php do_action( 'site_reset_admin_page_right_section_bottom' ); ?>
+
 					</div>
 				</div>
 
