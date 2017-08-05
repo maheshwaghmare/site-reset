@@ -49,11 +49,17 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 */
 		public function __construct() {
 
+			$this->includes();
+
 			add_action( 'admin_menu',                   array( $this, 'add_page' ) );
 			add_action( 'admin_enqueue_scripts',        array( $this, 'admin_scripts' ) );
 
 			add_action( 'admin_init',                   array( $this, 'reset_process' ) );
 			add_action( 'wp_before_admin_bar_render',   array( $this, 'admin_bar_link' ) );
+		}
+
+		function includes() {
+			require_once SITE_RESET_DIR . 'vendor/wxr-importer/class-site-reset-xml-importer.php';
 		}
 
 		/**
@@ -80,7 +86,8 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 				'plugins'      => array(),
 			);
 
-			$reset_data = get_option( 'site_reset', $defaults );
+			$reset_stored_data = get_option( 'site_reset', $defaults );
+			$reset_data        = wp_parse_args( $reset_stored_data, $defaults );
 
 			require_once SITE_RESET_DIR . 'includes/view-admin-page.php';
 		}
@@ -205,12 +212,13 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 				$update_user_meta( $user_id, $wpdb->prefix . 'default_password_nag', false );
 			}
 
-			do_action( 'site_reset_after', $_POST );
-
 			/**
 			 * Activate Plugins.
 			 */
-			$reset_data = array();
+			$reset_data = array(
+				'plugins' => array(),
+				'theme'   => '',
+			);
 			if ( ! empty( $_POST['activate-plugins'] ) ) {
 
 				$reset_data['plugins'] = $_POST['activate-plugins'];
@@ -240,6 +248,8 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 
 			// Set current user auth cookies.
 			wp_set_auth_cookie( $user_id );
+
+			do_action( 'site_reset_success', $_POST );
 
 			// Redirect to /wp-admin/.
 			wp_redirect( admin_url() );
