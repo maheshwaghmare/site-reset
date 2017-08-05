@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Site Reset
  * Description: Set active plugins and default theme before site reset.
- * Plugin URI: https://maheshwaghmare.wordpress.com/
+ * Plugin URI: https://github.com/maheshwaghmare/site-reset
  * Author: Mahesh M. Waghmare
  * Author URI: https://maheshwaghmare.wordpress.com/
  * Version: 1.0.0
