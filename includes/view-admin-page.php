@@ -34,7 +34,7 @@
 						<div class="postbox">
 							<h2 class="hndle"><span> <?php _e( 'Themes', 'site-reset' ); ?> </span></h2>
 							<div class="inside">
-								<p class="description"> <?php _e( 'Set Active Theme after site reset.', 'site-reset' ); ?> </p>
+								<p class="description"> <?php _e( 'Select the theme which you want to activate after site reset.', 'site-reset' ); ?> </p>
 								<?php
 								/**
 								 * Themes
@@ -63,7 +63,7 @@
 						<div class="postbox">
 							<h2 class="hndle"><span> <?php _e( 'Plugins', 'site-reset' ); ?> </span></h2>
 							<div class="inside">
-								<p class="description"> <?php _e( 'Set Active Plugins after site reset.', 'site-reset' ); ?> </p>
+								<p class="description"> <?php _e( 'Select the plugin\'s which you want to activate after site reset.', 'site-reset' ); ?> </p>
 								<?php
 								/**
 								 * Get All Plugins
