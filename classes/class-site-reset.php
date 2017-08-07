@@ -54,6 +54,31 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 
 			add_action( 'admin_init',                   array( $this, 'reset_process' ) );
 			add_action( 'wp_before_admin_bar_render',   array( $this, 'admin_bar_link' ) );
+
+			add_action( 'load-tools_page_site-reset', 	array( $this, 'add_help' ) );
+		}
+
+		/**
+		 * Add Help Tab
+		 *
+		 * @since 1.0.0
+		 */
+		function add_help() {
+			$screen = get_current_screen();
+
+			$screen->add_help_tab( array(
+				'id'       => 'site-reset-default',
+				'title'    => __( 'Default', 'site-reset' ),
+
+				/* translators: %1$s is URL parameter.  */
+				'content'  => '<p>' . sprintf( __( 'Selected theme and active plugins data is stored in option %1$s. <br/> If you want to delete current stored data then add %2$s in URL to and press enter. We clear current selected theme and active plugins data.', 'site-reset' ) , '<code>site_reset</code>', '<code>&amp;author=true</code>' ) . '</p>',
+			));
+
+			// Help sidebars are optional.
+			$screen->set_help_sidebar(
+				'<p><strong>' . __( 'For more information:', 'site-reset' ) . '</strong></p>' .
+				'<p><a href="https://wordpress.org/support/plugin/site-reset/" target="_blank">' . __( 'Support Forums', 'site-reset' ) . '</a></p>'
+			);
 		}
 
 		/**

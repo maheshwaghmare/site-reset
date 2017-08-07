@@ -13,13 +13,7 @@
 
 	<form id="site-reset-form" action="" method="post">
 	
-		<p>
-			<?php
-			/* translators: %1$s is URL parameter.  */
-			printf( __( 'Set default theme and active plugin\'s before site reset. Add %1$s in URL to and press enter to delete current selected default theme & plugins.', 'site-reset' ) , '<code>&amp;author=true</code>' );
-			?>
-		</p>
-		
+		<p><?php _e( 'Set default theme and active plugin\'s before site reset.', 'site-reset' ); ?> </p>
 
 		<?php do_action( 'site_reset_page_top' ); ?>
 
@@ -43,7 +37,7 @@
 									?>
 									<p>
 										<label <?php echo esc_attr( $theme_key ); ?>>
-											<input type="radio" <?php checked( $reset_data['theme'], $theme_key, ' checked="checked"' ); ?> name="switch-theme" value="<?php echo esc_attr( $theme_key ); ?>" /><?php echo esc_html( $theme_info->Name ); ?>
+											<input type="radio" <?php checked( $reset_data['theme'], $theme_key, ' checked="checked"' ); ?> name="switch-theme" value="<?php echo esc_attr( $theme_key ); ?>" /><?php echo esc_html( $theme_info->Name ); /* WPCS: xss ok. */ ?> 
 										</label>
 									<p>
 								<?php } ?>
