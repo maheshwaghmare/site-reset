@@ -16,7 +16,7 @@
 		<p>
 			<?php
 			/* translators: %1$s is URL parameter.  */
-			printf( __( 'Set default theme and activate plugins before site reset. Add %1$s in URL to and press enter to delete current selected default theme & plugins.', 'site-reset' ) , '<code>&amp;author=true</code>' );
+			printf( __( 'Set default theme and active plugin\'s before site reset. Add %1$s in URL to and press enter to delete current selected default theme & plugins.', 'site-reset' ) , '<code>&amp;author=true</code>' );
 			?>
 		</p>
 		
