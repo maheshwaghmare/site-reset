@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/maheshwaghmare/site-reset
  * Author: Mahesh M. Waghmare
  * Author URI: https://maheshwaghmare.wordpress.com/
- * Version: 1.0.0
+ * Version: 1.0.1
  * License: GPL2
  * Text Domain: site-reset
  *
@@ -15,7 +15,7 @@
 /**
  * Set constants.
  */
-define( 'SITE_RESET_VER',  '1.0.0' );
+define( 'SITE_RESET_VER',  '1.0.1' );
 define( 'SITE_RESET_FILE', __FILE__ );
 define( 'SITE_RESET_BASE', plugin_basename( SITE_RESET_FILE ) );
 define( 'SITE_RESET_DIR',  plugin_dir_path( SITE_RESET_FILE ) );

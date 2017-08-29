@@ -105,7 +105,8 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 				'plugins'      => array(),
 			);
 
-			$reset_data = get_option( 'site_reset', $defaults );
+			$stored_data = get_option( 'site_reset', $defaults );
+			$reset_data = wp_parse_args( $stored_data, $defaults );
 
 			require_once SITE_RESET_DIR . 'includes/view-admin-page.php';
 		}
@@ -235,7 +236,10 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			/**
 			 * Activate Plugins.
 			 */
-			$reset_data = array();
+			$reset_data = array(
+				'theme'        => '',
+				'plugins'      => array(),
+			);
 			if ( ! empty( $_POST['activate-plugins'] ) ) {
 
 				$reset_data['plugins'] = $_POST['activate-plugins'];

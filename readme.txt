@@ -2,7 +2,7 @@
 Contributors: Mahesh901122
 Tags: site reset
 Tested up to: 4.8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires at least: 4.4
 
 Set active plugins and default theme before site reset.
@@ -23,11 +23,6 @@ Note: 'Reset Site' plugin not support multisite.
 
 Extend on [Github](https://github.com/maheshwaghmare/site-reset/)
 
-== Changelog ==
-
-= 1.0.0 =
-* Initial release.
-
 == Installation ==
 
 1. Install the <code>Site Reset</code> plugin either via the WordPress plugin directory, or by uploading the files to your server at <code>wp-content/plugins</code>.
@@ -38,3 +33,11 @@ Extend on [Github](https://github.com/maheshwaghmare/site-reset/)
 = Multisite Support? =
 
 No! Currently we not support multisite reset. So, Do not use 'Site Reset' on multisite.
+
+== Changelog ==
+
+= 1.0.1 =
+* Fix: PHP error from plugin listing page.
+
+= 1.0.0 =
+* Initial release.
