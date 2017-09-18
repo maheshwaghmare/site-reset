@@ -25,6 +25,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 *
 		 * @access private
 		 * @var object Class object.
+			require_once SITE_RESET_DIR . 'includes/view-admin-page.php';
 		 * @since 1.0.0
 		 */
 		private static $instance;

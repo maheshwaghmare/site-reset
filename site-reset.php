@@ -21,6 +21,7 @@ define( 'SITE_RESET_BASE', plugin_basename( SITE_RESET_FILE ) );
 define( 'SITE_RESET_DIR',  plugin_dir_path( SITE_RESET_FILE ) );
 define( 'SITE_RESET_URI',  plugins_url( '/', SITE_RESET_FILE ) );
 
-if ( is_admin() ) {
-	require_once SITE_RESET_DIR . 'classes/class-site-reset.php';
-}
+require_once SITE_RESET_DIR . 'classes/class-site-reset.php';
+
+// WP CLI
+require_once SITE_RESET_DIR . 'classes/class-site-reset-wpcli.php';
