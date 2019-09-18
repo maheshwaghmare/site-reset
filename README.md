@@ -21,7 +21,7 @@ Note: 'Reset Site' plugin not support multisite.
 * From popup confirmation box select <code>Ok</code>
 * Done! Your site will be reset with your selected theme and plugins.
 
-Extend on [Github](https://github.com/maheshwaghmare/site-reset/)
+Extend Site Reset plugin on [Github](https://github.com/maheshwaghmare/site-reset/)
 
 == Installation ==
 
