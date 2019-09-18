@@ -1,7 +1,7 @@
 === Site Reset ===
 Contributors: Mahesh901122
 Tags: site reset
-Tested up to: 4.8.1
+Tested up to: 5.2
 Stable tag: 1.0.1
 Requires at least: 4.4
 
