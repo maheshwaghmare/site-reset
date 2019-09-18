@@ -11,7 +11,7 @@ Set active plugins and default theme before site reset.
 
 Set active plugins and default theme before site reset.
 
-**Note:** 'Reset Site' plugin not support multisite.
+*Note:* 'Reset Site' plugin not support multisite.
 
 = How to use? =
 * Goto <code>tools -> Site Reset</code>.
