@@ -49,13 +49,13 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 */
 		public function __construct() {
 
-			add_action( 'admin_menu',                   array( $this, 'add_page' ) );
-			add_action( 'admin_enqueue_scripts',        array( $this, 'admin_scripts' ) );
+			add_action( 'admin_menu', array( $this, 'add_page' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-			add_action( 'admin_init',                   array( $this, 'reset_process' ) );
-			add_action( 'wp_before_admin_bar_render',   array( $this, 'admin_bar_link' ) );
+			add_action( 'admin_init', array( $this, 'reset_process' ) );
+			add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar_link' ) );
 
-			add_action( 'load-tools_page_site-reset', 	array( $this, 'add_help' ) );
+			add_action( 'load-tools_page_site-reset', array( $this, 'add_help' ) );
 		}
 
 		/**
@@ -66,13 +66,15 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		function add_help() {
 			$screen = get_current_screen();
 
-			$screen->add_help_tab( array(
-				'id'       => 'site-reset-default',
-				'title'    => __( 'Default', 'site-reset' ),
+			$screen->add_help_tab(
+				array(
+					'id'      => 'site-reset-default',
+					'title'   => __( 'Default', 'site-reset' ),
 
-				/* translators: %1$s is URL parameter.  */
-				'content'  => '<p>' . sprintf( __( 'Selected theme and active plugins data is stored in option %1$s. <br/> If you want to delete current stored data then add %2$s in URL to and press enter. We clear current selected theme and active plugins data.', 'site-reset' ) , '<code>site_reset</code>', '<code>&amp;author=true</code>' ) . '</p>',
-			));
+					/* translators: %1$s is URL parameter.  */
+					'content' => '<p>' . sprintf( __( 'Selected theme and active plugins data is stored in option %1$s. <br/> If you want to delete current stored data then add %2$s in URL to and press enter. We clear current selected theme and active plugins data.', 'site-reset' ), '<code>site_reset</code>', '<code>&amp;author=true</code>' ) . '</p>',
+				)
+			);
 
 			// Help sidebars are optional.
 			$screen->set_help_sidebar(
@@ -101,12 +103,12 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		function admin_page() {
 
 			$defaults = array(
-				'theme'        => '',
-				'plugins'      => array(),
+				'theme'   => '',
+				'plugins' => array(),
 			);
 
 			$stored_data = get_option( 'site_reset', $defaults );
-			$reset_data = wp_parse_args( $stored_data, $defaults );
+			$reset_data  = wp_parse_args( $stored_data, $defaults );
 
 			require_once SITE_RESET_DIR . 'includes/view-admin-page.php';
 		}
@@ -216,8 +218,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			$password_message = $result['password_message'];
 
 			// Set current user password.
-			$query = $wpdb->prepare( "UPDATE $wpdb->users SET user_pass = %s, user_activation_key = '' WHERE ID = %d", $user->user_pass, $user_id );
-			$wpdb->query( $query ); // WPCS: unprepared SQL OK.
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->users SET user_pass = %s, user_activation_key = '' WHERE ID = %d", $user->user_pass, $user_id ) ); // phpcs:ignore Standard.Category.SniffName.ErrorCode.
 
 			$get_user_meta    = function_exists( 'get_user_meta' ) ? 'get_user_meta' : 'get_usermeta';
 			$update_user_meta = function_exists( 'update_user_meta' ) ? 'update_user_meta' : 'update_usermeta';
@@ -237,8 +238,8 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			 * Activate Plugins.
 			 */
 			$reset_data = array(
-				'theme'        => '',
-				'plugins'      => array(),
+				'theme'   => '',
+				'plugins' => array(),
 			);
 			if ( ! empty( $_POST['activate-plugins'] ) ) {
 
@@ -256,7 +257,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			 * Switch Theme.
 			 */
 			if ( isset( $_POST['switch-theme'] ) ) {
-				$theme_slug = sanitize_text_field( $_POST['switch-theme'] );
+				$theme_slug          = sanitize_text_field( $_POST['switch-theme'] );
 				$reset_data['theme'] = $theme_slug;
 				switch_theme( $theme_slug );
 			}
