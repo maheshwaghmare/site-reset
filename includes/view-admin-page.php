@@ -12,7 +12,7 @@
 	<h1><?php esc_html_e( 'Site Reset', 'site-reset' ); ?></h1>
 
 	<form id="site-reset-form" action="" method="post">
-
+	
 		<p><?php _e( 'Set default theme and active plugin\'s before site reset.', 'site-reset' ); ?> </p>
 
 		<?php do_action( 'site_reset_page_top' ); ?>
@@ -37,13 +37,13 @@
 									?>
 									<p>
 										<label <?php echo esc_attr( $theme_key ); ?>>
-											<input type="radio" <?php checked( $reset_data['theme'], $theme_key, ' checked="checked"' ); ?> name="switch-theme" value="<?php echo esc_attr( $theme_key ); ?>" /><?php echo esc_html( $theme_info->Name ); /* WPCS: xss ok. */ ?>
+											<input type="radio" <?php checked( $reset_data['theme'], $theme_key, ' checked="checked"' ); ?> name="switch-theme" value="<?php echo esc_attr( $theme_key ); ?>" /><?php echo esc_html( $theme_info->Name ); /* WPCS: xss ok. */ ?> 
 										</label>
 									<p>
 								<?php } ?>
 							</div>
 						</div>
-
+						
 						<?php do_action( 'site_reset_admin_page_left_section_bottom' ); ?>
 
 					</div>
@@ -67,7 +67,7 @@
 
 									// Mark checked for stored plugins.
 									$checked = '';
-									if ( in_array( $plugin_init, $reset_data['plugins'], false ) ) {
+									if ( in_array( $plugin_init, $reset_data['plugins'] ) ) {
 										$checked = ' checked="checked" ';
 									}
 
