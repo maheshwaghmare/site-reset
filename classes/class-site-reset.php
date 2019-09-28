@@ -48,7 +48,6 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 * @since 1.0.0
 		 */
 		public function __construct() {
-
 			add_action( 'admin_menu',                   array( $this, 'add_page' ) );
 			add_action( 'admin_enqueue_scripts',        array( $this, 'admin_scripts' ) );
 
@@ -100,10 +99,10 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 */
 		function admin_page() {
 
-			$defaults = array(
+			$defaults = apply_filters( 'site_reset_default_settings', array(
 				'theme'        => '',
 				'plugins'      => array(),
-			);
+			));
 
 			$stored_data = get_option( 'site_reset', $defaults );
 			$reset_data = wp_parse_args( $stored_data, $defaults );
@@ -121,7 +120,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		function admin_scripts( $hook = '' ) {
 
 			if ( 'tools_page_site-reset' === $hook ) {
-				wp_enqueue_script( 'site-reset-admin', SITE_RESET_URI . 'assets/admin.js', array( 'jquery' ) );
+				wp_enqueue_script( 'site-reset-admin', SITE_RESET_URI . 'assets/admin.js', array( 'jquery' ), SITE_RESET_VER, true );
 				$site_reset_js_obj = array(
 					'warning' => __( "Warning! Your current data will lost.\n\nWe recommend to take a backup before process the site reset.\n\nClick on 'ok' button to reset the site.", 'site-reset' ),
 					'invalid' => __( 'Invalid input! Please type \'reset\' to reset the site.', 'site-reset' ),
@@ -236,10 +235,10 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			/**
 			 * Activate Plugins.
 			 */
-			$reset_data = array(
+			$reset_data = apply_filters( 'site_reset_default_settings', array(
 				'theme'        => '',
 				'plugins'      => array(),
-			);
+			));
 			if ( ! empty( $_POST['activate-plugins'] ) ) {
 
 				$reset_data['plugins'] = $_POST['activate-plugins'];

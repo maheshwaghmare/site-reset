@@ -2,7 +2,7 @@
 Contributors: Mahesh901122
 Tags: site reset
 Tested up to: 5.2
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 Requires at least: 4.4
 
 Set active plugins and default theme before site reset.
@@ -35,6 +35,9 @@ Extend Site Reset plugin on [Github](https://github.com/maheshwaghmare/site-rese
 No! Currently we not support multisite reset. So, Do not use 'Site Reset' on multisite.
 
 == Changelog ==
+
+= 1.1.0 =
+* New: Added filter `site_reset_default_settings` to change the default settings.
 
 = 1.0.1 =
 * Fix: PHP error from plugin listing page.
