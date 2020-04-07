@@ -1,17 +1,17 @@
-=== Site Reset ===
+=== Reset Complete Site ===
 Contributors: Mahesh901122
 Tags: site reset
-Tested up to: 5.2
-Stable tag: 1.1.0
+Tested up to: 5.4
+Stable tag: 1.2.0
 Requires at least: 4.4
 
-Set active plugins and default theme before site reset.
+Select your favorite theme and active plugin's which you want to see after site reset.
 
 == Description ==
 
-Set active plugins and default theme before site reset.
+Select your favorite theme and active plugin's which you want to see after site reset.
 
-Note: 'Reset Site' plugin not support multisite.
+Note: 'Reset Complete Site' plugin not support multisite.
 
 = How to use? =
 * Goto <code>tools -> Site Reset</code>.
@@ -35,6 +35,9 @@ Extend Site Reset plugin on [Github](https://github.com/maheshwaghmare/site-rese
 No! Currently we not support multisite reset. So, Do not use 'Site Reset' on multisite.
 
 == Changelog ==
+
+= 1.2.0 =
+* New: Added settings page link into the plugin actions link.
 
 = 1.1.0 =
 * New: Added filter `site_reset_default_settings` to change the default settings.

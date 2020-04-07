@@ -9,11 +9,11 @@
 ?>
 <div class="wrap">
 
-	<h1><?php esc_html_e( 'Site Reset', 'site-reset' ); ?></h1>
+	<h1><?php esc_html_e( 'Reset Complete Site', 'site-reset' ); ?></h1>
 
 	<form id="site-reset-form" action="" method="post">
 	
-		<p><?php _e( 'Set default theme and active plugin\'s before site reset.', 'site-reset' ); ?> </p>
+		<p><?php _e( 'Select your favorite theme and active plugin\'s which you want to see after site reset.', 'site-reset' ); ?> </p>
 
 		<?php do_action( 'site_reset_page_top' ); ?>
 
@@ -28,7 +28,7 @@
 						<div class="postbox">
 							<h2 class="hndle"><span> <?php _e( 'Themes', 'site-reset' ); ?> </span></h2>
 							<div class="inside">
-								<p class="description"> <?php _e( 'Select the theme which you want to activate after site reset.', 'site-reset' ); ?> </p>
+								<p class="description"> <?php _e( 'Select your favorite theme.', 'site-reset' ); ?> </p>
 								<?php
 								/**
 								 * Themes
@@ -57,7 +57,7 @@
 						<div class="postbox">
 							<h2 class="hndle"><span> <?php _e( 'Plugins', 'site-reset' ); ?> </span></h2>
 							<div class="inside">
-								<p class="description"> <?php _e( 'Select the plugin\'s which you want to activate after site reset.', 'site-reset' ); ?> </p>
+								<p class="description"> <?php _e( 'Select your favorite plugins.', 'site-reset' ); ?> </p>
 								<?php
 								/**
 								 * Get All Plugins
@@ -110,7 +110,7 @@
 		<input id="site-reset" type="hidden" name="site-reset" value="true" />
 		<input id="site-reset-confirm" type="text" name="site-reset-confirm" value="" /><br/>
 		<p class="submit">
-			<input type="submit" name="button-site-reset" class="button-primary" id="button-site-reset" value="<?php _e( 'Reset', 'site-reset' ); ?>" />
+			<input type="submit" name="button-site-reset" class="button-primary" id="button-site-reset" value="<?php _e( 'Reset Complete Site', 'site-reset' ); ?>" />
 		</p>
 
 
