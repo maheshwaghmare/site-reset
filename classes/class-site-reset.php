@@ -48,13 +48,36 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 * @since 1.0.0
 		 */
 		public function __construct() {
-			add_action( 'admin_menu',                   array( $this, 'add_page' ) );
-			add_action( 'admin_enqueue_scripts',        array( $this, 'admin_scripts' ) );
+			add_action( 'admin_menu', array( $this, 'add_page' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-			add_action( 'admin_init',                   array( $this, 'reset_process' ) );
-			add_action( 'wp_before_admin_bar_render',   array( $this, 'admin_bar_link' ) );
+			add_action( 'admin_init', array( $this, 'reset_process' ) );
+			add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar_link' ) );
 
-			add_action( 'load-tools_page_site-reset', 	array( $this, 'add_help' ) );
+			add_action( 'load-tools_page_site-reset', array( $this, 'add_help' ) );
+
+			add_action( 'plugin_action_links_' . SITE_RESET_BASE, array( $this, 'action_links' ) );
+		}
+
+		/**
+		 * Show action links on the plugin screen.
+		 *
+		 * @param   mixed $links Plugin Action links.
+		 * @return  array
+		 */
+		public function action_links( $links ) {
+
+			$arguments = array(
+				'page' => 'site-reset',
+			);
+
+			$url = add_query_arg( $arguments, admin_url( 'tools.php' ) );
+
+			$action_links = array(
+				'settings' => '<a href="' . esc_url( $url ) . '" aria-label="' . esc_attr__( 'Settings', 'site-reset' ) . '">' . esc_html__( 'Settings', 'site-reset' ) . '</a>',
+			);
+
+			return array_merge( $action_links, $links );
 		}
 
 		/**
@@ -65,13 +88,15 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		function add_help() {
 			$screen = get_current_screen();
 
-			$screen->add_help_tab( array(
-				'id'       => 'site-reset-default',
-				'title'    => __( 'Default', 'site-reset' ),
+			$screen->add_help_tab(
+				array(
+					'id'      => 'site-reset-default',
+					'title'   => __( 'Default', 'site-reset' ),
 
-				/* translators: %1$s is URL parameter.  */
-				'content'  => '<p>' . sprintf( __( 'Selected theme and active plugins data is stored in option %1$s. <br/> If you want to delete current stored data then add %2$s in URL to and press enter. We clear current selected theme and active plugins data.', 'site-reset' ) , '<code>site_reset</code>', '<code>&amp;author=true</code>' ) . '</p>',
-			));
+					/* translators: %1$s is URL parameter.  */
+					'content' => '<p>' . sprintf( __( 'Selected theme and active plugins data is stored in option %1$s. <br/> If you want to delete current stored data then add %2$s in URL to and press enter. We clear current selected theme and active plugins data.', 'site-reset' ), '<code>site_reset</code>', '<code>&amp;author=true</code>' ) . '</p>',
+				)
+			);
 
 			// Help sidebars are optional.
 			$screen->set_help_sidebar(
@@ -88,7 +113,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 */
 		public function add_page() {
 			if ( current_user_can( 'level_10' ) ) {
-				add_management_page( __( 'Site Reset', 'site-reset' ), __( 'Site Reset', 'site-reset' ), 'level_10', 'site-reset', array( $this, 'admin_page' ) );
+				add_management_page( __( 'Reset Complete Site', 'site-reset' ), __( 'Reset Complete Site', 'site-reset' ), 'level_10', 'site-reset', array( $this, 'admin_page' ) );
 			}
 		}
 
@@ -99,13 +124,16 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 		 */
 		function admin_page() {
 
-			$defaults = apply_filters( 'site_reset_default_settings', array(
-				'theme'        => '',
-				'plugins'      => array(),
-			));
+			$defaults = apply_filters(
+				'site_reset_default_settings',
+				array(
+					'theme'   => '',
+					'plugins' => array(),
+				)
+			);
 
 			$stored_data = get_option( 'site_reset', $defaults );
-			$reset_data = wp_parse_args( $stored_data, $defaults );
+			$reset_data  = wp_parse_args( $stored_data, $defaults );
 
 			require_once SITE_RESET_DIR . 'includes/view-admin-page.php';
 		}
@@ -141,7 +169,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 				array(
 					'parent' => 'site-name',
 					'id'     => 'site-reset',
-					'title'  => __( 'Site Reset', 'site-reset' ),
+					'title'  => __( 'Reset Complete Site', 'site-reset' ),
 					'href'   => admin_url( 'tools.php?page=site-reset' ),
 				)
 			);
@@ -235,10 +263,13 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			/**
 			 * Activate Plugins.
 			 */
-			$reset_data = apply_filters( 'site_reset_default_settings', array(
-				'theme'        => '',
-				'plugins'      => array(),
-			));
+			$reset_data = apply_filters(
+				'site_reset_default_settings',
+				array(
+					'theme'   => '',
+					'plugins' => array(),
+				)
+			);
 			if ( ! empty( $_POST['activate-plugins'] ) ) {
 
 				$reset_data['plugins'] = $_POST['activate-plugins'];
@@ -255,7 +286,7 @@ if ( ! class_exists( 'Site_Reset' ) ) :
 			 * Switch Theme.
 			 */
 			if ( isset( $_POST['switch-theme'] ) ) {
-				$theme_slug = sanitize_text_field( $_POST['switch-theme'] );
+				$theme_slug          = sanitize_text_field( $_POST['switch-theme'] );
 				$reset_data['theme'] = $theme_slug;
 				switch_theme( $theme_slug );
 			}
