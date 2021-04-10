@@ -1,8 +1,8 @@
 === Reset Complete Site ===
 Contributors: Mahesh901122
 Tags: site reset
-Tested up to: 5.4
-Stable tag: 1.2.0
+Tested up to: 5.7
+Stable tag: 1.2.1
 Requires at least: 4.4
 
 Select your favorite theme and active plugin's which you want to see after site reset.
@@ -35,6 +35,10 @@ Extend Site Reset plugin on [Github](https://github.com/maheshwaghmare/site-rese
 No! Currently we not support multisite reset. So, Do not use 'Site Reset' on multisite.
 
 == Changelog ==
+
+= 1.2.1 =
+
+* Improvement - Compatibility to WordPress 5.7.
 
 = 1.2.0 =
 * New: Added settings page link into the plugin actions link.
